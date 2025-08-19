@@ -1,4 +1,3 @@
-import React from 'react'
 import { links } from '../Navbar.data'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'

@@ -1,4 +1,3 @@
-import React from 'react'
 import { Logo } from '@/components/Shared'
 import { NavbarDesktop } from './NabarDesktop'
 import { NavbarMobile } from './NavbarMobile'
