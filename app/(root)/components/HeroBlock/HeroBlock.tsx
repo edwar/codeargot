@@ -37,8 +37,8 @@ export function HeroBlock() {
             />
           </span>
         </h1>
-        <p className='text-indigo-100 text-lg md:text-xl font-light mb-12 max-w-xl mx-auto leading-relaxed text-center'>Prepare for your next job with realistic interview questions and feedback from real interviewers and actionable feedback to improve your skills with 
-          <span className='bg-gradient-to-r from-indigo-400 to-cyan-400 text-transparent bg-clip-text font-extrabold'>CodeArgot</span>
+        <p className='text-indigo-100 text-lg md:text-xl font-light mb-12 max-w-xl mx-auto leading-relaxed text-center'>Prepare for your next job with realistic interview questions and feedback from real interviewers and actionable feedback to improve your skills with {''}
+          <span className='bg-gradient-to-r from-indigo-600 via-purple  -500 to-cyan-500 text-transparent bg-clip-text font-extrabold'>CodeArgot</span>
         </p>
         <div className='flex items-center justify-center pb-5'>
           <Button className='bg-purple-600 text-white rounded-lg px-20 py-6 text-lg font-semibold shadow-lg transition duration-300 ease-in-out' asChild>
