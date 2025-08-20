@@ -41,7 +41,7 @@ export function HeroBlock() {
           <span className='bg-gradient-to-r from-indigo-600 via-purple  -500 to-cyan-500 text-transparent bg-clip-text font-extrabold'>CodeArgot</span>
         </p>
         <div className='flex items-center justify-center pb-5'>
-          <Button className='bg-purple-600 text-white rounded-lg px-20 py-6 text-lg font-semibold shadow-lg transition duration-300 ease-in-out' asChild>
+          <Button className='group bg-purple-600 hover:bg-purple-700 text-white rounded-lg px-20 py-6 text-lg font-semibold shadow-lg transition duration-300 ease-in-out cursor-pointer' asChild>
             <Link href='/dashboard'>
               <Sparkle className='group-hover:rotate-12 transition-transform' />
               Start Practicing Now
