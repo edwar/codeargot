@@ -28,6 +28,8 @@ export function HeroBlock() {
                 1000,
                 'Cybersecurity 🛡️',
                 1000,
+                'QA Engineer 🧪',
+                1000,
 
               ]}
               wrapper="span"
