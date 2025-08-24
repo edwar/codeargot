@@ -23,8 +23,13 @@ import { Input } from "@/components/ui/input"
 import { formSchema } from "./FormCreateInterview.form"
 import { Mic } from "lucide-react"
 import { difficulties, roles } from "./FormCreateInterview.data"
+import { useState } from "react"
+import { useRouter } from "next/navigation"
+import axios from "axios"
 
 export function FormCreateInterview() {
+  const [loading, setLoading] = useState(false)
+  const router = useRouter()
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -34,8 +39,16 @@ export function FormCreateInterview() {
     },
   })
  
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values)
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    setLoading(true)
+    try {
+      const response = await axios.post("/api/create-interview", values)
+      router.push(`/interview/${response.data.id}`);
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setLoading(false)
+    }
   }
   return (
     <Form {...form}>
@@ -106,8 +119,12 @@ export function FormCreateInterview() {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full bg-gradient-to-r from-purple-600 to-blue-600 font-bold py-3 px-6 rounded-lg hover:from-purple-700 hover:to-blue-700 transition-colors duration-300 cursor-pointer">
-          Start Interview
+        <Button
+          type="submit"
+          className="w-full bg-gradient-to-r from-purple-600 to-blue-600 font-bold py-3 px-6 rounded-lg hover:from-purple-700 hover:to-blue-700 transition-colors duration-300 cursor-pointer"
+          disabled={loading}
+        >
+          {loading ? "Loading..." : "Start Interview"}
           <Mic />
         </Button>
       </form>
