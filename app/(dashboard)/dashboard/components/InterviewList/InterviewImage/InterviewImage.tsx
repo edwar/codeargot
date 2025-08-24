@@ -1,4 +1,4 @@
-import { roles } from "@/components/Shared/BtnCreateInterview/FormCreateInterview/FormCreateInterview.data";
+import { roles } from "@/components/shared/BtnCreateInterview/FormCreateInterview/FormCreateInterview.data";
 import { InterviewImageProps } from "./InterviewImage.types";
 
 export function InterviewImage({ interview }: InterviewImageProps) {

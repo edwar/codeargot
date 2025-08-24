@@ -34,7 +34,7 @@ model Interview {
   name        String
   rol         String
   level       String
-  statedAt    DateTime  @default(now())
+  startedAt    DateTime  @default(now())
   completedAt DateTime?
   transcript  Json?
 

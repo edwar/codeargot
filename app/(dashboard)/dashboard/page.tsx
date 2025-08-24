@@ -6,8 +6,6 @@ import { MetricCard, InterviewList } from "./components";
 export default async function DashboardPage() {
   const { userId } = await auth();
 
-  console.log(userId);
-
   if (!userId) {
     return null;
   }
@@ -17,7 +15,7 @@ export default async function DashboardPage() {
       userId,
     },
     select: {
-      statedAt: true,
+      startedAt: true,
       completedAt: true,
       transcript: true
     },
@@ -27,7 +25,7 @@ export default async function DashboardPage() {
 
   const completedInterviews = interviews.filter((i) => i.completedAt !== null);
 
-  const totalDurationMs = completedInterviews.reduce((acc, i) => acc + (i.completedAt!.getTime() - i.statedAt.getTime()), 0);
+  const totalDurationMs = completedInterviews.reduce((acc, i) => acc + (i.completedAt!.getTime() - i.startedAt.getTime()), 0);
 
   const avgDuration = completedInterviews.length ? Math.round(totalDurationMs / completedInterviews.length / 1000 / 60) : 0;
 

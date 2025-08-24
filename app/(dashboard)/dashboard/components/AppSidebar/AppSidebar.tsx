@@ -10,7 +10,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import { sidebarItems } from "./AppSidebar.data"
-import { BtnCreateInterview, Logo } from "@/components/Shared"
+import { BtnCreateInterview, Logo } from "@/components/shared"
 import { AccessStatus } from "./AccessStatus"
 
 
