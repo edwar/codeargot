@@ -1,7 +1,7 @@
 "use client"
 
 import axios from "axios"
-import {BtnCreateInterview} from "@/components/Shared"
+import {BtnCreateInterview, Loader} from "@/components/shared"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
@@ -34,6 +34,11 @@ export function InterviewList() {
     mid: "bg-yellow-600/20 border-yellow-400/30 text-yellow-300",
     senior: "bg-red-600/20 border-red-400/30 text-red-300",
   }
+
+  if (loading) {
+    return <Loader />
+  }
+
   return (
     <div>
       <div className="mt-5 p-4 md:px-10 border border-white/10 rounded-md bg-white/10 backdrop-blur-lg">
@@ -49,7 +54,6 @@ export function InterviewList() {
             <p className="text-left">Type</p>
             <p className="text-center">Actions</p>
           </div>
-          {loading && <p>Loading...</p>}
           {error && <p>{error}</p>}
           {!loading && !error && !interviews.length && <p>No interviews found</p>}
           {!loading && !error && interviews.length > 0 && interviews.slice(0, 5).map((interview) => (

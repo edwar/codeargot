@@ -1,4 +1,4 @@
-import { Logo } from '@/components/Shared'
+import { Logo } from '@/components/shared'
 import { NavbarDesktop } from './NabarDesktop'
 import { NavbarMobile } from './NavbarMobile'
 
