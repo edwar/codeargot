@@ -1,7 +1,7 @@
 "use client"
 
 import axios from "axios"
-import {BtnCreateInterview, Loader} from "@/components/shared"
+import {BtnCreateInterview, Loader, StripeDialogPayment} from "@/components/shared"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
@@ -14,6 +14,21 @@ export function InterviewList() {
   const [interviews, setInterviews] = useState<Interview[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string>("")
+  const [hasPaid, setHasPaid] = useState<boolean | null>(null)
+  const [hasUsedFreeTrial, setHasUsedFreeTrial] = useState<boolean | null>(null)
+
+  useEffect(() => {
+    const fetchUserStatus = async () => {
+      try {
+        const response = await axios.get("/api/user/status")
+        setHasPaid(response.data.hasPaid)
+        setHasUsedFreeTrial(response.data.hasUsedFreeTrial)
+      } catch(error) {
+        console.error("Failed to fetch user", error)
+      }
+    }
+    fetchUserStatus()
+  }, [])
 
   useEffect(() => {
     const fetchInterviews = async () => {
@@ -44,7 +59,8 @@ export function InterviewList() {
       <div className="mt-5 p-4 md:px-10 border border-white/10 rounded-md bg-white/10 backdrop-blur-lg">
         <div className="flex justify-between items-center">
           <h2 className="text-2xl font-semibold">Last interviews</h2>
-          <BtnCreateInterview />
+          {(hasPaid || !hasUsedFreeTrial) && <BtnCreateInterview />}
+          {!hasPaid && hasUsedFreeTrial && <StripeDialogPayment />}
         </div>
         <div className="mt-4">
           <div className="grid grid-cols-1 md:grid-cols-[1fr_50%_1fr_1fr_1fr] text-sm font-medium text-slate-200 mb-4">
@@ -59,7 +75,7 @@ export function InterviewList() {
           {!loading && !error && interviews.length > 0 && interviews.slice(0, 5).map((interview) => (
             <div key={interview.id} className="grid grid-cols-1 gap-5 md:gap-0 md:grid-cols-[1fr_50%_1fr_1fr_1fr] items-center justify-between border-b pb-4 last:border-b-0 my-4">
               <span className="text-left text-sm text-white/70">
-                {new Date(interview.statedAt).toLocaleDateString()}
+                {new Date(interview.startedAt).toLocaleDateString()}
               </span>
               <div className="flex gap-4 items-center">
                 <InterviewImage interview={interview} />
