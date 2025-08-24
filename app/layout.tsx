@@ -4,6 +4,7 @@ import {
 } from '@clerk/nextjs'
 import { Lato } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "@/components/ui/sonner"
 
 const lato = Lato({
   subsets: ["latin"],
@@ -28,6 +29,7 @@ export default function RootLayout({
           className={`${lato.className} antialiased`}
         >
           {children}
+          <Toaster />
         </body>
       </html>
     </ClerkProvider>

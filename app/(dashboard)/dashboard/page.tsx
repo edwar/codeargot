@@ -1,7 +1,7 @@
 import { auth } from "@clerk/nextjs/server";
 import { db } from "@/lib/db";
 import { CheckCircle, Clock, TrendingUp, ClipboardCheck } from "lucide-react";
-import { MetricCard } from "./components";
+import { MetricCard, InterviewList } from "./components";
 
 export default async function DashboardPage() {
   const { userId } = await auth();
@@ -49,7 +49,7 @@ export default async function DashboardPage() {
         <MetricCard
           icon={<Clock className="text-purple-400" />}
           title="Average time"
-          value={`${avgDuration} min`}
+          value={`${avgDuration } min`}
         />
         <MetricCard
           icon={<TrendingUp className="text-blue-400" />}
@@ -64,6 +64,7 @@ export default async function DashboardPage() {
           </div>
         </div>
       </div>
+      <InterviewList />
     </div>
   )
 }
